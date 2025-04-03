@@ -1,9 +1,19 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, LogOut, HelpCircle, Settings, MessageCircle } from "lucide-react";
+import { 
+  User, 
+  LogOut, 
+  HelpCircle, 
+  Settings, 
+  MessageCircle, 
+  Crown, 
+  TrendingUp, 
+  BarChart3, 
+  Users 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +21,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Progress } from "@/components/ui/progress";
 import MetricCard from "@/components/dashboard/MetricCard";
 import CampaignsList from "@/components/dashboard/CampaignsList";
 import InfluencerRanking from "@/components/dashboard/InfluencerRanking";
@@ -33,6 +44,15 @@ const RestaurantDashboard = () => {
     window.location.href = "https://wa.me/5511123456789?text=Olá,%20preciso%20de%20ajuda%20com%20a%20plataforma%20conecta-influência";
   };
 
+  // Top influencer data
+  const topInfluencer = {
+    name: "@gourmetpaulista",
+    avatar: "https://i.pravatar.cc/150?img=11", 
+    rating: 5.0,
+    reviews: 24,
+    engagement: "+1.2k"
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header/Navbar */}
@@ -49,7 +69,7 @@ const RestaurantDashboard = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuItem className="font-medium">
-                  Restaurante Exemplo
+                  Restaurante Sabor Mineiro 🍽️
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => setShowSettings(true)}>
@@ -73,27 +93,75 @@ const RestaurantDashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold mb-6">Central do Restaurante</h2>
+        <h2 className="text-2xl font-bold mb-2">Bem-vindo, Restaurante Sabor Mineiro! 👋</h2>
+        <p className="text-gray-600 mb-6">Aqui está o resumo da sua conta e campanhas</p>
         
         {/* Metrics Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <MetricCard 
-            title="Plano Atual" 
+            title="Seu Plano" 
             value="Premium" 
-            description="8 influenciadores/mês"
+            description="Influenciadores/mês"
+            secondaryMetric={{
+              value: "8",
+              trend: "neutral",
+              label: "Total disponível"
+            }}
             actionLabel="Ver Detalhes"
+            icon={Crown}
+            iconColor="text-purple-600"
+            iconBgColor="bg-purple-100"
+            additionalContent={
+              <div>
+                <Progress value={50} className="h-2 my-2" />
+                <p className="text-xs text-gray-500">4 utilizados este mês</p>
+              </div>
+            }
           />
           <MetricCard 
-            title="Conversões Totais" 
-            value="157" 
-            description="Desde o início"
+            title="Conversões" 
+            value="124" 
+            description="Últimos 30 dias"
+            secondaryMetric={{
+              value: "+12%",
+              trend: "up",
+              label: "vs último mês"
+            }}
             actionLabel="Ver Detalhes"
+            icon={BarChart3}
+            iconColor="text-green-600"
+            iconBgColor="bg-green-100"
           />
           <MetricCard 
             title="ROI" 
-            value="210%" 
+            value="3.2x" 
             description="Retorno sobre investimento"
+            secondaryMetric={{
+              value: "+0.4x",
+              trend: "up",
+              label: "vs último mês"
+            }}
             actionLabel="Ver Detalhes"
+            icon={TrendingUp}
+            iconColor="text-blue-600"
+            iconBgColor="bg-blue-100"
+          />
+          <MetricCard 
+            title="Top Influenciador" 
+            value={topInfluencer.name} 
+            description={`${topInfluencer.engagement} engajamento`}
+            actionLabel="Ver Perfil"
+            icon={Users}
+            iconColor="text-rose-600"
+            iconBgColor="bg-rose-100"
+            additionalContent={
+              <div className="flex items-center">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span key={star} className="text-yellow-400">⭐</span>
+                ))}
+                <span className="ml-2 text-sm text-gray-600">{topInfluencer.rating} ({topInfluencer.reviews} avaliações)</span>
+              </div>
+            }
           />
         </div>
         
@@ -117,11 +185,13 @@ const RestaurantDashboard = () => {
       </button>
       
       {/* Settings Dialog */}
-      <Dialog open={showSettings} onOpenChange={setShowSettings}>
-        <DialogContent className="sm:max-w-lg">
-          <RestaurantSettings onClose={() => setShowSettings(false)} />
-        </DialogContent>
-      </Dialog>
+      {showSettings && (
+        <Dialog open={showSettings} onOpenChange={setShowSettings}>
+          <DialogContent className="sm:max-w-lg">
+            <RestaurantSettings onClose={() => setShowSettings(false)} />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };

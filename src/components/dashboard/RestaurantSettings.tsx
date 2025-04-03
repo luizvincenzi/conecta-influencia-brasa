@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { Camera, Smartphone, Mail, Globe, MapPin, Clock, Save, X } from "lucide-react";
 
 interface RestaurantSettingsProps {
   onClose: () => void;
@@ -23,7 +24,12 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
 
   return (
     <div className="py-4">
-      <h2 className="text-xl font-semibold mb-6">Configurações do Restaurante</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold">Configurações do Restaurante</h2>
+        <Button variant="ghost" size="sm" onClick={onClose}>
+          <X className="h-4 w-4" />
+        </Button>
+      </div>
       
       <Tabs defaultValue="profile">
         <TabsList className="w-full mb-6">
@@ -37,11 +43,15 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
           <form onSubmit={handleSave}>
             <div className="space-y-4">
               <div className="flex items-center mb-6">
-                <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden mr-4">
+                <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden mr-4 relative group">
                   <img src="https://i.pravatar.cc/150?img=20" alt="Profile" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Camera className="h-6 w-6 text-white" />
+                  </div>
                 </div>
                 <div>
                   <Button variant="outline" size="sm" className="mb-2">
+                    <Camera className="h-4 w-4 mr-2" />
                     Alterar foto
                   </Button>
                   <p className="text-xs text-gray-500">
@@ -53,7 +63,7 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="restaurantName">Nome do Restaurante</Label>
-                  <Input id="restaurantName" defaultValue="Restaurante Exemplo" />
+                  <Input id="restaurantName" defaultValue="Restaurante Sabor Mineiro" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="ownerName">Nome do Responsável</Label>
@@ -61,26 +71,45 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" defaultValue="contato@restauranteexemplo.com.br" />
+                  <div className="flex">
+                    <Mail className="h-4 w-4 text-gray-500 mr-2 mt-2.5" />
+                    <Input id="email" type="email" defaultValue="contato@sabormineirorestaurante.com.br" />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Telefone</Label>
-                  <Input id="phone" defaultValue="(11) 98765-4321" />
+                  <div className="flex">
+                    <Smartphone className="h-4 w-4 text-gray-500 mr-2 mt-2.5" />
+                    <Input id="phone" defaultValue="(11) 98765-4321" />
+                  </div>
                 </div>
                 <div className="space-y-2 col-span-2">
                   <Label htmlFor="location">Localização</Label>
-                  <Input id="location" defaultValue="Rua Exemplo, 123 - São Paulo, SP" />
+                  <div className="flex">
+                    <MapPin className="h-4 w-4 text-gray-500 mr-2 mt-2.5" />
+                    <Input id="location" defaultValue="Rua Exemplo, 123 - São Paulo, SP" />
+                  </div>
                 </div>
                 <div className="space-y-2 col-span-2">
                   <Label htmlFor="website">Website</Label>
-                  <Input id="website" defaultValue="https://restauranteexemplo.com.br" />
+                  <div className="flex">
+                    <Globe className="h-4 w-4 text-gray-500 mr-2 mt-2.5" />
+                    <Input id="website" defaultValue="https://sabormineirorestaurante.com.br" />
+                  </div>
+                </div>
+                <div className="space-y-2 col-span-2">
+                  <Label htmlFor="hours">Horário de Funcionamento</Label>
+                  <div className="flex">
+                    <Clock className="h-4 w-4 text-gray-500 mr-2 mt-2.5" />
+                    <Input id="hours" defaultValue="Seg-Sex: 11h às 23h | Sáb-Dom: 11h às 00h" />
+                  </div>
                 </div>
                 <div className="space-y-2 col-span-2">
                   <Label htmlFor="description">Descrição</Label>
                   <Textarea 
                     id="description" 
                     rows={4}
-                    defaultValue="Restaurante especializado em culinária mediterrânea, com ambiente aconchegante e atendimento personalizado. Fundado em 2015, temos como missão proporcionar experiências gastronômicas inesquecíveis."
+                    defaultValue="Restaurante especializado em culinária mineira autêntica, com ambiente aconchegante e atendimento personalizado. Fundado em 2015, temos como missão proporcionar experiências gastronômicas inesquecíveis com o melhor da cozinha de Minas Gerais."
                   />
                 </div>
               </div>
@@ -89,7 +118,10 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
                 <Button type="button" variant="outline" onClick={onClose}>
                   Cancelar
                 </Button>
-                <Button type="submit">Salvar Alterações</Button>
+                <Button type="submit">
+                  <Save className="h-4 w-4 mr-2" />
+                  Salvar Alterações
+                </Button>
               </div>
             </div>
           </form>
@@ -194,6 +226,7 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
                 });
                 onClose();
               }}>
+                <Save className="h-4 w-4 mr-2" />
                 Salvar Alterações
               </Button>
             </div>
@@ -312,6 +345,7 @@ const RestaurantSettings = ({ onClose }: RestaurantSettingsProps) => {
                 });
                 onClose();
               }}>
+                <Save className="h-4 w-4 mr-2" />
                 Salvar Alterações
               </Button>
             </div>
