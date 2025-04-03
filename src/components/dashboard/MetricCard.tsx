@@ -42,7 +42,7 @@ const MetricCard = ({
   additionalContent
 }: MetricCardProps) => {
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300">
+    <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300 border border-gray-200 bg-white rounded-xl">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-center">
           <CardTitle className="text-base text-gray-500">{title}</CardTitle>
@@ -83,7 +83,7 @@ const MetricCard = ({
               {actionLabel}
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="apple-dialog max-w-2xl p-0">
             <MetricDetails title={title} />
           </DialogContent>
         </Dialog>

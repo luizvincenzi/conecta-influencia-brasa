@@ -54,7 +54,7 @@ const RestaurantDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f3f3f1]">
       {/* Header/Navbar */}
       <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -67,7 +67,7 @@ const RestaurantDashboard = () => {
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="w-56 apple-popup">
                 <DropdownMenuItem className="font-medium">
                   Restaurante Sabor Mineiro 🍽️
                 </DropdownMenuItem>
@@ -187,7 +187,7 @@ const RestaurantDashboard = () => {
       {/* Settings Dialog */}
       {showSettings && (
         <Dialog open={showSettings} onOpenChange={setShowSettings}>
-          <DialogContent className="sm:max-w-lg">
+          <DialogContent className="apple-dialog sm:max-w-lg p-0">
             <RestaurantSettings onClose={() => setShowSettings(false)} />
           </DialogContent>
         </Dialog>
