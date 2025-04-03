@@ -10,7 +10,8 @@ import {
   Crown, 
   TrendingUp, 
   BarChart3, 
-  Users 
+  Users,
+  Bot
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -22,15 +23,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MetricCard from "@/components/dashboard/MetricCard";
 import CampaignsList from "@/components/dashboard/CampaignsList";
 import InfluencerRanking from "@/components/dashboard/InfluencerRanking";
 import RestaurantSettings from "@/components/dashboard/RestaurantSettings";
+import AIAgentsManager from "@/components/dashboard/AIAgentsManager";
+import WhatsAppFlowManager from "@/components/dashboard/WhatsAppFlowManager";
 import { toast } from "@/hooks/use-toast";
 
 const RestaurantDashboard = () => {
   const navigate = useNavigate();
   const [showSettings, setShowSettings] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const handleLogout = () => {
     toast({
@@ -96,84 +101,114 @@ const RestaurantDashboard = () => {
         <h2 className="text-2xl font-bold mb-2">Bem-vindo, Restaurante Sabor Mineiro! 👋</h2>
         <p className="text-gray-600 mb-6">Aqui está o resumo da sua conta e campanhas</p>
         
-        {/* Metrics Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <MetricCard 
-            title="Seu Plano" 
-            value="Premium" 
-            description="Influenciadores/mês"
-            secondaryMetric={{
-              value: "8",
-              trend: "neutral",
-              label: "Total disponível"
-            }}
-            actionLabel="Ver Detalhes"
-            icon={Crown}
-            iconColor="text-purple-600"
-            iconBgColor="bg-purple-100"
-            additionalContent={
-              <div>
-                <Progress value={50} className="h-2 my-2" />
-                <p className="text-xs text-gray-500">4 utilizados este mês</p>
-              </div>
-            }
-          />
-          <MetricCard 
-            title="Conversões" 
-            value="124" 
-            description="Últimos 30 dias"
-            secondaryMetric={{
-              value: "+12%",
-              trend: "up",
-              label: "vs último mês"
-            }}
-            actionLabel="Ver Detalhes"
-            icon={BarChart3}
-            iconColor="text-green-600"
-            iconBgColor="bg-green-100"
-          />
-          <MetricCard 
-            title="ROI" 
-            value="3.2x" 
-            description="Retorno sobre investimento"
-            secondaryMetric={{
-              value: "+0.4x",
-              trend: "up",
-              label: "vs último mês"
-            }}
-            actionLabel="Ver Detalhes"
-            icon={TrendingUp}
-            iconColor="text-blue-600"
-            iconBgColor="bg-blue-100"
-          />
-          <MetricCard 
-            title="Top Influenciador" 
-            value={topInfluencer.name} 
-            description={`${topInfluencer.engagement} engajamento`}
-            actionLabel="Ver Perfil"
-            icon={Users}
-            iconColor="text-rose-600"
-            iconBgColor="bg-rose-100"
-            additionalContent={
-              <div className="flex items-center">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} className="text-yellow-400">⭐</span>
-                ))}
-                <span className="ml-2 text-sm text-gray-600">{topInfluencer.rating} ({topInfluencer.reviews} avaliações)</span>
-              </div>
-            }
-          />
-        </div>
-        
-        {/* Influencer Ranking */}
-        <div className="mb-8">
-          <InfluencerRanking />
-        </div>
-        
-        {/* Campaigns List */}
-        <div>
-          <CampaignsList />
-        </div>
+        <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <TabsList className="mb-4">
+            <TabsTrigger value="overview">Visão Geral</TabsTrigger>
+            <TabsTrigger value="campaigns">Campanhas</TabsTrigger>
+            <TabsTrigger value="influencers">Influenciadores</TabsTrigger>
+            <TabsTrigger value="ai-communication">IA & Comunicação</TabsTrigger>
+          </TabsList>
+          
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-8">
+            {/* Metrics Section */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <MetricCard 
+                title="Seu Plano" 
+                value="Premium" 
+                description="Influenciadores/mês"
+                secondaryMetric={{
+                  value: "8",
+                  trend: "neutral",
+                  label: "Total disponível"
+                }}
+                actionLabel="Ver Detalhes"
+                icon={Crown}
+                iconColor="text-purple-600"
+                iconBgColor="bg-purple-100"
+                additionalContent={
+                  <div>
+                    <Progress value={50} className="h-2 my-2" />
+                    <p className="text-xs text-gray-500">4 utilizados este mês</p>
+                  </div>
+                }
+              />
+              <MetricCard 
+                title="Conversões" 
+                value="124" 
+                description="Últimos 30 dias"
+                secondaryMetric={{
+                  value: "+12%",
+                  trend: "up",
+                  label: "vs último mês"
+                }}
+                actionLabel="Ver Detalhes"
+                icon={BarChart3}
+                iconColor="text-green-600"
+                iconBgColor="bg-green-100"
+              />
+              <MetricCard 
+                title="ROI" 
+                value="3.2x" 
+                description="Retorno sobre investimento"
+                secondaryMetric={{
+                  value: "+0.4x",
+                  trend: "up",
+                  label: "vs último mês"
+                }}
+                actionLabel="Ver Detalhes"
+                icon={TrendingUp}
+                iconColor="text-blue-600"
+                iconBgColor="bg-blue-100"
+              />
+              <MetricCard 
+                title="Top Influenciador" 
+                value={topInfluencer.name} 
+                description={`${topInfluencer.engagement} engajamento`}
+                actionLabel="Ver Perfil"
+                icon={Users}
+                iconColor="text-rose-600"
+                iconBgColor="bg-rose-100"
+                additionalContent={
+                  <div className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star} className="text-yellow-400">⭐</span>
+                    ))}
+                    <span className="ml-2 text-sm text-gray-600">{topInfluencer.rating} ({topInfluencer.reviews} avaliações)</span>
+                  </div>
+                }
+              />
+            </div>
+            
+            {/* Influencer Ranking */}
+            <div className="mb-8">
+              <InfluencerRanking />
+            </div>
+            
+            {/* Campaigns List */}
+            <div>
+              <CampaignsList />
+            </div>
+          </TabsContent>
+          
+          {/* Campaigns Tab */}
+          <TabsContent value="campaigns">
+            <CampaignsList />
+          </TabsContent>
+          
+          {/* Influencers Tab */}
+          <TabsContent value="influencers">
+            <InfluencerRanking />
+          </TabsContent>
+          
+          {/* AI & Communication Tab */}
+          <TabsContent value="ai-communication" className="space-y-8">
+            <div className="grid grid-cols-1 gap-8">
+              <AIAgentsManager />
+              <WhatsAppFlowManager />
+            </div>
+          </TabsContent>
+        </Tabs>
       </main>
       
       {/* Floating Support Button */}

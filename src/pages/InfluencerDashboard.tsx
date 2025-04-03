@@ -1,9 +1,10 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, LogOut, HelpCircle, Settings, MessageCircle, Award } from "lucide-react";
+import { User, LogOut, HelpCircle, Settings, MessageCircle, Award, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,11 +16,14 @@ import MetricCard from "@/components/dashboard/MetricCard";
 import InfluencerCampaigns from "@/components/dashboard/InfluencerCampaigns";
 import LeaderboardCard from "@/components/dashboard/LeaderboardCard";
 import InfluencerSettings from "@/components/dashboard/InfluencerSettings";
+import AIAgentsManager from "@/components/dashboard/AIAgentsManager";
+import WhatsAppFlowManager from "@/components/dashboard/WhatsAppFlowManager";
 import { toast } from "@/hooks/use-toast";
 
 const InfluencerDashboard = () => {
   const navigate = useNavigate();
   const [showSettings, setShowSettings] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const handleLogout = () => {
     toast({
@@ -75,42 +79,72 @@ const InfluencerDashboard = () => {
       <main className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6">Central do Influenciador</h2>
         
-        {/* Metrics Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <MetricCard 
-            title="Campanhas Ativas" 
-            value="3" 
-            description="Em andamento"
-            actionLabel="Ver Detalhes"
-          />
-          <MetricCard 
-            title="Ganhos Totais" 
-            value="R$ 2.450" 
-            description="Total acumulado"
-            actionLabel="Ver Detalhes"
-          />
-          <MetricCard 
-            title="Classificação" 
-            value={
-              <div className="flex items-center">
-                <Award className="w-5 h-5 text-yellow-500 mr-1" />
-                <span>AdLeader Gold</span>
-              </div>
-            } 
-            description="Melhor da região"
-            actionLabel="Ver Detalhes"
-          />
-        </div>
-        
-        {/* Leaderboard */}
-        <div className="mb-8">
-          <LeaderboardCard />
-        </div>
-        
-        {/* Active Campaigns */}
-        <div>
-          <InfluencerCampaigns />
-        </div>
+        <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <TabsList className="mb-4">
+            <TabsTrigger value="overview">Visão Geral</TabsTrigger>
+            <TabsTrigger value="campaigns">Campanhas</TabsTrigger>
+            <TabsTrigger value="leaderboard">Ranking</TabsTrigger>
+            <TabsTrigger value="ai-communication">IA & Comunicação</TabsTrigger>
+          </TabsList>
+          
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-8">
+            {/* Metrics Section */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <MetricCard 
+                title="Campanhas Ativas" 
+                value="3" 
+                description="Em andamento"
+                actionLabel="Ver Detalhes"
+              />
+              <MetricCard 
+                title="Ganhos Totais" 
+                value="R$ 2.450" 
+                description="Total acumulado"
+                actionLabel="Ver Detalhes"
+              />
+              <MetricCard 
+                title="Classificação" 
+                value={
+                  <div className="flex items-center">
+                    <Award className="w-5 h-5 text-yellow-500 mr-1" />
+                    <span>AdLeader Gold</span>
+                  </div>
+                } 
+                description="Melhor da região"
+                actionLabel="Ver Detalhes"
+              />
+            </div>
+            
+            {/* Leaderboard */}
+            <div className="mb-8">
+              <LeaderboardCard />
+            </div>
+            
+            {/* Active Campaigns */}
+            <div>
+              <InfluencerCampaigns />
+            </div>
+          </TabsContent>
+          
+          {/* Campaigns Tab */}
+          <TabsContent value="campaigns">
+            <InfluencerCampaigns />
+          </TabsContent>
+          
+          {/* Leaderboard Tab */}
+          <TabsContent value="leaderboard">
+            <LeaderboardCard />
+          </TabsContent>
+          
+          {/* AI & Communication Tab */}
+          <TabsContent value="ai-communication" className="space-y-8">
+            <div className="grid grid-cols-1 gap-8">
+              <AIAgentsManager />
+              <WhatsAppFlowManager />
+            </div>
+          </TabsContent>
+        </Tabs>
       </main>
       
       {/* Floating Support Button */}
