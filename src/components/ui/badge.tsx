@@ -21,7 +21,6 @@ const badgeVariants = cva(
         gold: "border-transparent bg-yellow-100 text-yellow-800 hover:bg-yellow-200",
         silver: "border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200",
         bronze: "border-transparent bg-orange-100 text-orange-800 hover:bg-orange-200",
-        platinum: "border-transparent bg-purple-100 text-purple-800 hover:bg-purple-200",
       },
     },
     defaultVariants: {
