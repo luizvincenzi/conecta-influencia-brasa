@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, LogOut, HelpCircle, Settings, MessageCircle, Award, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   DropdownMenu,
@@ -158,6 +157,7 @@ const InfluencerDashboard = () => {
       {/* Settings Dialog */}
       <Dialog open={showSettings} onOpenChange={setShowSettings}>
         <DialogContent className="apple-dialog sm:max-w-lg p-0">
+          <DialogTitle className="sr-only">Configurações do Influenciador</DialogTitle>
           <InfluencerSettings onClose={() => setShowSettings(false)} />
         </DialogContent>
       </Dialog>
