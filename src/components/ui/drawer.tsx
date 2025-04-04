@@ -42,13 +42,18 @@ const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[20px] border border-gray-200 bg-white shadow-xl",
+        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-none border-0 bg-white shadow-xl book-popup",
         className
       )}
       {...props}
     >
       <div className="mx-auto mt-4 h-1.5 w-[50px] rounded-full bg-gray-300" />
+      <div className="book-ribbon"></div>
       {children}
+      <div className="book-controls mx-4 mb-4">
+        <button className="book-control-button">Edit</button>
+        <button className="book-control-button">Share</button>
+      </div>
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))

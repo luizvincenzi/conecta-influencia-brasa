@@ -138,3 +138,82 @@
 .delay-500 {
   transition-delay: 500ms;
 }
+
+/* Book-style design for popups and menus */
+.book-popup {
+  @apply bg-white rounded-none border-0;
+  box-shadow: 
+    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.09) 0px 6px 8px -5px,
+    rgba(0, 0, 0, 0.05) 0px 8px 12px -5px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* Book spine and edge effects */
+.book-popup::before, 
+.book-popup::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+/* Spine effect on the left */
+.book-popup::before {
+  height: 100%;
+  top: 0;
+  width: 8px;
+  background: linear-gradient(90deg, 
+    rgba(0,0,0,0.02) 0%, 
+    rgba(0,0,0,0.05) 20%, 
+    rgba(0,0,0,0.1) 60%, 
+    rgba(0,0,0,0.05) 100%);
+  border-right: 1px solid rgba(0,0,0,0.05);
+  left: 0;
+  z-index: 1;
+}
+
+/* Page edge texture */
+.book-popup::after {
+  height: 100%;
+  top: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f6f6f6 0px,
+    #fff 1px,
+    #fff 2px,
+    #f8f8f8 3px
+  );
+  width: 3px;
+  right: 0;
+  left: auto;
+  opacity: 0.5;
+}
+
+/* Bookmark ribbon */
+.book-ribbon {
+  position: absolute;
+  width: 30px;
+  height: 60px;
+  background-color: #e74c3c;
+  top: -5px;
+  right: 20px;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transform: rotate(0deg);
+}
+
+/* Book control buttons */
+.book-controls {
+  @apply flex gap-2 p-2 border-t border-gray-200 mt-2;
+}
+
+.book-control-button {
+  @apply px-3 py-1 text-xs rounded border border-gray-300 bg-white hover:bg-gray-50 transition-colors;
+}
+
