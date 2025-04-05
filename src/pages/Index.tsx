@@ -32,6 +32,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      {/* Floating Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-primary to-accent opacity-10 blur-3xl"></div>
+        <div className="absolute top-2/3 right-1/3 w-80 h-80 rounded-full bg-gradient-to-r from-accent to-primary opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-primary to-accent opacity-5 blur-3xl"></div>
+      </div>
+      
       <Navbar />
       <HeroSection />
       <HowItWorks />

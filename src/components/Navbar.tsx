@@ -8,10 +8,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200 py-4">
+    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-200 py-4">
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
         <div className="flex items-center">
-          <h1 className="text-xl font-semibold">conecta-influência</h1>
+          <h1 className="text-xl font-semibold">CONECTA<span className="text-[#FF5A5F]">INFLUÊNCIA</span></h1>
         </div>
         
         {/* Mobile Menu Button */}
@@ -49,22 +49,22 @@ const Navbar = () => {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-          <a href="#como-funciona" className="font-medium hover:text-[#0071e3] transition-colors">
+          <a href="#como-funciona" className="font-medium hover:text-[#FF5A5F] transition-colors">
             Como Funciona
           </a>
-          <a href="#planos" className="font-medium hover:text-[#0071e3] transition-colors">
+          <a href="#planos" className="font-medium hover:text-[#FF5A5F] transition-colors">
             Planos
           </a>
-          <a href="#depoimentos" className="font-medium hover:text-[#0071e3] transition-colors">
+          <a href="#depoimentos" className="font-medium hover:text-[#FF5A5F] transition-colors">
             Depoimentos
           </a>
-          <a href="#faq" className="font-medium hover:text-[#0071e3] transition-colors">
+          <a href="#faq" className="font-medium hover:text-[#FF5A5F] transition-colors">
             FAQ
           </a>
           
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="apple-button">Login</Button>
+              <Button className="bg-gradient-primary hover:shadow-lg transition-shadow">Login</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <LoginForm />
@@ -79,28 +79,28 @@ const Navbar = () => {
           <div className="flex flex-col space-y-3">
             <a 
               href="#como-funciona" 
-              className="font-medium py-2 hover:text-[#0071e3] transition-colors"
+              className="font-medium py-2 hover:text-[#FF5A5F] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Como Funciona
             </a>
             <a 
               href="#planos" 
-              className="font-medium py-2 hover:text-[#0071e3] transition-colors"
+              className="font-medium py-2 hover:text-[#FF5A5F] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Planos
             </a>
             <a 
               href="#depoimentos" 
-              className="font-medium py-2 hover:text-[#0071e3] transition-colors"
+              className="font-medium py-2 hover:text-[#FF5A5F] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Depoimentos
             </a>
             <a 
               href="#faq" 
-              className="font-medium py-2 hover:text-[#0071e3] transition-colors"
+              className="font-medium py-2 hover:text-[#FF5A5F] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               FAQ
@@ -108,7 +108,7 @@ const Navbar = () => {
             
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="apple-button w-full mt-2">Login</Button>
+                <Button className="bg-gradient-primary w-full mt-2">Login</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
                 <LoginForm />

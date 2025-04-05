@@ -8,40 +8,43 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div className="flex-1 space-y-6 max-w-2xl opacity-0 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Eleve o Marketing do Seu Restaurante com Influenciadores Locais
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <div className="absolute inset-0 hero-gradient opacity-95 z-0"></div>
+      <div className="absolute inset-0 parallax z-0"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-white opacity-0 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              <span className="text-gradient">Influenciadores Locais</span> para Alavancar seu Restaurante
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-xl">
-              Conecte-se a influenciadores, impulsione engajamento autêntico e veja resultados reais—tudo em uma plataforma fácil de usar.
+            <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl">
+              Conectamos seu restaurante com os melhores influenciadores gastronômicos da região. Ganhe visibilidade, clientes reais e resultados mensuráveis.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="apple-button" onClick={handleContactClick}>
-                Converse com um especialista
+              <Button className="apple-button !bg-gradient-primary" onClick={handleContactClick}>
+                Teste Grátis por 14 Dias
               </Button>
-              <Button variant="outline" className="border-gray-300">
+              <Button variant="outline" className="border-gray-300 hover:bg-white/10 text-white">
                 Saiba mais
               </Button>
             </div>
             
-            <div className="flex items-center gap-2 text-sm">
+            <div className="mt-12 flex items-center gap-2 text-sm">
               <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs">R</div>
-                <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">J</div>
-                <div className="w-8 h-8 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs">M</div>
+                <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs">R</div>
+                <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">J</div>
+                <div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs">M</div>
               </div>
-              <p className="text-gray-600">
-                <span className="font-medium">+ 150 restaurantes</span> já estão crescendo com a conecta-influência
+              <p className="text-gray-200">
+                <span className="font-medium">+ 250 restaurantes</span> já estão crescendo com a conecta-influência
               </p>
             </div>
           </div>
           
           <div className="flex-1 relative opacity-0 animate-fade-in animate-delay-2">
-            <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg relative">
+            <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-2xl border-8 border-white/20 relative">
               <img 
                 src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" 
                 alt="Restaurante movimentado com clientes"
@@ -53,7 +56,7 @@ const HeroSection = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=100&q=60" 
+                      src="https://randomuser.me/api/portraits/women/44.jpg" 
                       alt="Perfil de influenciador"
                       className="w-full h-full object-cover"
                     />
@@ -88,7 +91,7 @@ const HeroSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm font-medium">+35% em reservas</p>
+                  <p className="text-sm font-medium">+42% em reservas</p>
                   <p className="text-xs text-gray-500">nos últimos 30 dias</p>
                 </div>
               </div>
@@ -96,22 +99,22 @@ const HeroSection = () => {
           </div>
         </div>
         
-        <div className="mt-20 pt-10 border-t border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-0 animate-fade-in animate-delay-3">
+        <div className="mt-20 pt-10 border-t border-gray-200/20 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-0 animate-fade-in animate-delay-3">
           <div className="text-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#0071e3]">150+</h3>
-            <p className="text-gray-600 mt-1">Restaurantes</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">250+</h3>
+            <p className="text-gray-300 mt-1">Restaurantes</p>
           </div>
           <div className="text-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#0071e3]">450+</h3>
-            <p className="text-gray-600 mt-1">Influenciadores</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">450+</h3>
+            <p className="text-gray-300 mt-1">Influenciadores</p>
           </div>
           <div className="text-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#0071e3]">2.5M+</h3>
-            <p className="text-gray-600 mt-1">Engajamentos</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">2.5M+</h3>
+            <p className="text-gray-300 mt-1">Engajamentos</p>
           </div>
           <div className="text-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#0071e3]">35%</h3>
-            <p className="text-gray-600 mt-1">+ Reservas em média</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">42%</h3>
+            <p className="text-gray-300 mt-1">+ Reservas em média</p>
           </div>
         </div>
       </div>
